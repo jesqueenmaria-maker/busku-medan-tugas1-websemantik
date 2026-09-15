@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<busListrikMedan>
+
+    <bus>
+        <kodeBus>K1</kodeBus>
+        <rute>Amplas - Pinang Baris</rute>
+        <jumlahHalte>37</jumlahHalte>
+        <totalJarak>8 km</totalJarak>
+        <frekuensi_keberangkatan>15 menit</frekuensi_keberangkatan>
+    </bus>
+
+    <bus>
+        <kodeBus>K1</kodeBus>
+        <rute>Pinang Baris - Amplas</rute>
+        <jumlahHalte>38</jumlahHalte>
+        <totalJarak>8 km</totalJarak>
+        <frekuensi_keberangkatan>15 menit</frekuensi_keberangkatan>
+    </bus>
+
+
+    <bus>
+        <kodeBus>K2</kodeBus>
+        <rute>J City - Plaza Medan Fair</rute>
+        <jumlahHalte>25</jumlahHalte>
+        <totalJarak>7 km</totalJarak>
+        <frekuensi_keberangkatan>15 menit</frekuensi_keberangkatan>
+    </bus>
+
+    <bus>
+        <kodeBus>K2</kodeBus>
+        <rute>Plaza Medan Fair - J City</rute>
+        <jumlahHalte>18</jumlahHalte>
+        <totalJarak>7 km</totalJarak>
+        <frekuensi_keberangkatan>15 menit</frekuensi_keberangkatan>
+    </bus>
+
+
+    <bus>
+        <kodeBus>K3</kodeBus>
+        <rute>Belawan - Lapangan Merdeka</rute>
+        <jumlahHalte>32</jumlahHalte>
+        <totalJarak>21 km</totalJarak>
+        <frekuensi_keberangkatan>15 menit</frekuensi_keberangkatan>
+    </bus>
+
+    <bus>
+        <kodeBus>K3</kodeBus>
+        <rute>Lapangan Merdeka - Belawan</rute>
+        <jumlahHalte>30</jumlahHalte>
+        <totalJarak>21 km</totalJarak>
+        <frekuensi_keberangkatan>15 menit</frekuensi_keberangkatan>
+    </bus>
+
+
+    <bus>
+        <kodeBus>K4</kodeBus>
+        <rute>Tuntungan - Lapangan Merdeka</rute>
+        <jumlahHalte>37</jumlahHalte>
+        <totalJarak>16 km</totalJarak>
+        <frekuensi_keberangkatan>15 menit</frekuensi_keberangkatan>
+    </bus>
+
+    <bus>
+        <kodeBus>K4</kodeBus>
+        <rute>Lapangan Merdeka - Tuntungan</rute>
+        <jumlahHalte>30</jumlahHalte>
+        <totalJarak>12 km</totalJarak>
+        <frekuensi_keberangkatan>15 menit</frekuensi_keberangkatan>
+    </bus>
+
+
+    <bus>
+        <kodeBus>K5</kodeBus>
+        <rute>Tembung - Lapangan Merdeka</rute>
+        <jumlahHalte>18</jumlahHalte>
+        <totalJarak>9 km</totalJarak>
+        <frekuensi_keberangkatan>15 menit</frekuensi_keberangkatan>
+    </bus>
+
+    <bus>
+        <kodeBus>K5</kodeBus>
+        <rute>Lapangan Merdeka - Tembung</rute>
+        <jumlahHalte>19</jumlahHalte>
+        <totalJarak>9 km</totalJarak>
+        <frekuensi_keberangkatan>15 menit</frekuensi_keberangkatan>
+    </bus>
+
+</busListrikMedan>

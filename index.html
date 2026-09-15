@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Listrik Medan</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f0f4f8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #10b981, #06b6d4, #3b82f6);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .header .tagline {
+            font-size: 15px;
+            font-style: italic;
+            opacity: 0.85;
+            margin-bottom: 15px;
+        }
+
+        .eco-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.25);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        thead {
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+            color: white;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        tbody tr:hover {
+            background: #f5f5f5;
+        }
+
+        .kode {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .k1 { background: #10b981; }
+        .k2 { background: #06b6d4; }
+        .k3 { background: #3b82f6; }
+        .k4 { background: #8b5cf6; }
+        .k5 { background: #f59e0b; }
+
+        .rute {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .rute-detail {
+            font-size: 11px;
+            color: #888;
+            margin-top: 3px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .error {
+            background: #fee;
+            border: 2px solid #f44;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            color: #c00;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #888;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>BUS LISTRIK MEDAN</h1>
+            <p class="subtitle">Sistem Transportasi Ramah Lingkungan</p>
+            <p class="tagline">"Menuju Medan yang Lebih Hijau dan Bersih"</p>
+            <div class="eco-badge"> ZERO EMISSION • ECO FRIENDLY</div>
+        </div>
+
+        <div id="content">
+            <div class="loading">Memuat data...</div>
+        </div>
+
+        <div class="footer">
+            Tugas Web Semantik - Due Date: 2 Oktober 2025
+        </div>
+    </div>
+
+    <script>
+        async function loadData() {
+            try {
+                const response = await fetch('busListrikMedan.xml');
+                if (!response.ok) throw new Error('File XML tidak ditemukan');
+                
+                const xmlText = await response.text();
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+
+                if (xmlDoc.getElementsByTagName("parsererror").length > 0) {
+                    throw new Error('XML tidak valid');
+                }
+
+                const buses = xmlDoc.getElementsByTagName("bus");
+                if (buses.length === 0) throw new Error('Tidak ada data');
+
+                let html = '<table><thead><tr><th>No</th><th>Kode</th><th>Rute</th><th>Halte</th><th>Jarak</th><th>Frekuensi</th></tr></thead><tbody>';
+
+                for (let i = 0; i < buses.length; i++) {
+                    const bus = buses[i];
+                    const kode = bus.getElementsByTagName("kodeBus")[0].textContent;
+                    const rute = bus.getElementsByTagName("rute")[0].textContent;
+                    const halte = bus.getElementsByTagName("jumlahHalte")[0].textContent;
+                    const jarak = bus.getElementsByTagName("totalJarak")[0].textContent;
+                    const freq = bus.getElementsByTagName("frekuensi_keberangkatan")[0].textContent;
+
+                    const parts = rute.split(' - ');
+
+                    html += `<tr>
+                        <td>${i + 1}</td>
+                        <td><span class="kode k${kode.charAt(1)}">${kode}</span></td>
+                        <td>
+                            <div class="rute">${rute}</div>
+                            <div class="rute-detail">${parts[0]} → ${parts[1] || ''}</div>
+                        </td>
+                        <td>${halte}</td>
+                        <td>${jarak}</td>
+                        <td>${freq}</td>
+                    </tr>`;
+                }
+
+                html += '</tbody></table>';
+                document.getElementById('content').innerHTML = html;
+
+            } catch (error) {
+                document.getElementById('content').innerHTML = `
+                    <div class="error">
+                        <h3>Error!</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        window.onload = loadData;
+    </script>
+
+</body>
+</html>
